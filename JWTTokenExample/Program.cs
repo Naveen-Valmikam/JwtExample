@@ -45,8 +45,8 @@ namespace JWTTokenExample
                 new Claim("custid","M123456")
             });
 
-            tokenDescriptor.Issuer = "MMSG";
-            tokenDescriptor.Audience = "Paywith";
+            tokenDescriptor.Issuer = "ABC";
+            tokenDescriptor.Audience = "DEF";
          
             var now = DateTime.UtcNow;
             tokenDescriptor.IssuedAt = now;
@@ -71,8 +71,8 @@ namespace JWTTokenExample
                 new Claim("CustomerId","M123456")
             });
 
-            tokenDescriptor.Issuer = "MMSG";
-            tokenDescriptor.Audience = "Paywith";
+            tokenDescriptor.Issuer = "ABC";
+            tokenDescriptor.Audience = "DEF";
             var now = DateTime.UtcNow;
             tokenDescriptor.IssuedAt = now;
             tokenDescriptor.Expires = now.AddMinutes(2);
@@ -95,8 +95,8 @@ namespace JWTTokenExample
                 var tokenHandler = new JwtSecurityTokenHandler();
 
                 var validationParameters = new TokenValidationParameters();
-                validationParameters.ValidIssuer = "MMSG";
-                validationParameters.ValidAudience = "Paywith";
+                validationParameters.ValidIssuer = "ABC";
+                validationParameters.ValidAudience = "DEF";
 
                 validationParameters.IssuerSigningKey = new X509SecurityKey(certificate);
                 var validatedToken = tokenHandler.ReadToken(token);
@@ -119,8 +119,7 @@ namespace JWTTokenExample
 
         private static X509Certificate2 GetCertificate()
         {
-            var certThumbprint = "E85BB83E0690DDDB0B3CB0CD390993F72DF8AE94";
-            //var issuerName = "MAXWS2328.msa.com.au";
+            var certThumbprint = "E85BB83E0690DDDB0B3CB0CD390993F72DF8AE94";            
             var certStore = new X509Store(StoreName.My, StoreLocation.LocalMachine);
             certStore.Open(OpenFlags.ReadOnly);
             var certificates = certStore.Certificates.Find(X509FindType.FindByThumbprint, certThumbprint, true);
